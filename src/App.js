@@ -26,8 +26,7 @@ function App() {
             Оно будет отображатся как автор задач
           </Form.Text>
           <div className="modal__block-button">
-            <Button>Ок</Button>
-            <Button onClick={() => setModalActive(false)}>Пропустить</Button>
+            <Button onClick={() => setModalActive(false)}>Ок</Button>
           </div>          
         </Modal>
         <List author = {nameUser}  setAuthor = {setNameUser}/>
