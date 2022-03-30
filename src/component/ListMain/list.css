@@ -1,0 +1,9 @@
+.list{
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+.list li{
+    max-width: 320px;
+    width: 100%;
+}
