@@ -65,26 +65,3 @@ body{
 /* def for input */
 @import "~materialize.min.css";
 
-.todo {
-  margin-bottom: 1rem;
-}
-
-.todo.completed span {
-  text-decoration: line-through;
-}
-
-.todo label {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-  background: rgb(255, 227, 190);
-  padding: 1rem;
-  border-radius: 15px;
-}
-
-.todo i {
-  z-index: 2;
-}
-

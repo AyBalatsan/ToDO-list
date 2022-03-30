@@ -8,3 +8,29 @@
     height: auto;
 }
 .blockMessage__number{}
+
+.todo {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;  
+    justify-content: space-around;
+    background: rgb(255, 227, 190);
+    width: 100%;  
+    padding: 1rem;
+    border-radius: 15px;
+  }
+  
+  .todo label {  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+  
+  .todo i {
+    z-index: 2;
+  }
+  
+.todo__title{
+    cursor: pointer;
+}

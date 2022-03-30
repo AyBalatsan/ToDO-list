@@ -10,10 +10,6 @@ import s from './TodoItem.css'
 export default function TodoItem({title, id, completed, author}) {
   const {dispatch} = useContext(Context)
   const[modalOpen, setModalOpen] = useState(false)
-  const cls = ['todo']
-  if (completed) {
-    cls.push('completed')
-  }
   const [stateCommit, dispatchCommit] = useReducer(Reducer, JSON.parse(localStorage.getItem('Commit' + id)) || [])
   const [todoCommit, setTodoCommit] = useState('')
     
@@ -32,24 +28,13 @@ export default function TodoItem({title, id, completed, author}) {
   }
   
   return (    
-    <li className={cls.join(' ')}>
+    <li className='todo'>
       <Context.Provider value={{dispatchCommit}}>
-        <label >          
-          <input
-            type="checkbox"
-            checked={completed}
-            onChange={() => dispatch({
-              type: 'toggle',
-              payload: id
-            })}
-          />
-          <span></span>
-          <p onClick={() => setModalOpen(true)}>{title}</p>
-          <div className ="blockMessage">
-            <img  className ="blockMessage__img" src={message} alt='message'></img>
-            <p  className ="blockMessage__number">{stateCommit.length}</p>
-          </div>
-        </label>
+        <p className='todo__title' onClick={() => setModalOpen(true)}>{title}</p>
+        <div className ="blockMessage">
+          <img  className ="blockMessage__img" src={message} alt='message'></img>
+          <p  className ="blockMessage__number">{stateCommit.length}</p>
+        </div>
         <Modal active={modalOpen} setActive={setModalOpen}>
           <h3>{title}</h3>
           <p>Автор поста: {author}</p>

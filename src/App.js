@@ -8,6 +8,7 @@ import  Button from 'react-bootstrap/Button'
 function App() {
   const[modalActive, setModalActive] = useState(true)
   const[nameUser, setNameUser] = useState('')
+  
   return (
     <div className="App">
       <div className='App__wrapper'>
