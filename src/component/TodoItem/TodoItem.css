@@ -1,0 +1,10 @@
+.blockMessage{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.blockMessage__img{
+    width: 24px;
+    height: auto;
+}
+.blockMessage__number{}

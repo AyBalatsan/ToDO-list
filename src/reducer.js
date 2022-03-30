@@ -16,7 +16,14 @@ export default function (state, action) {
                     id: Date.now(),
                     title: action.payload,
                 }
-            ]    
+            ]  
+        case 'editTitleList':
+            return state.map(titleList => {
+                if (titleList.id === action.identifier) {
+                    titleList.title = action.payload
+                }
+                return titleList
+            })
         case 'toggle':
             return state.map(todo => {
                 if (todo.id === action.payload) {
