@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import List from './component/ListMain/List';
 import Modal from './component/modal/modal';
@@ -8,7 +8,23 @@ import  Button from 'react-bootstrap/Button'
 function App() {
   const[modalActive, setModalActive] = useState(true)
   const[nameUser, setNameUser] = useState('')
+
+  useEffect(() =>{
+    setModalActive(JSON.parse(localStorage.getItem('preview') || []))
+  }, [])
+
+  useEffect(() =>{
+    localStorage.setItem('preview', JSON.stringify(modalActive))
+  }, [modalActive])
   
+  useEffect(() =>{
+    setNameUser(JSON.parse(localStorage.getItem('author') || []))
+  }, [])
+
+  useEffect(() =>{
+    localStorage.setItem('author', JSON.stringify(nameUser))
+  }, [nameUser])
+
   return (
     <div className="App">
       <div className='App__wrapper'>
