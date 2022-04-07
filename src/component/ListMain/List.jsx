@@ -4,7 +4,8 @@ import ItemUpLevel from '../ItemUpLevel/ItemUpLevel'
 import {Context} from '../../context'
 import './list.css'
 
-export default function List(props) {  
+export default function List(props) { 
+  
   let jList = JSON.parse(localStorage.getItem('TitleList')) || [
     {id: 1, title: 'TODO'},
     {id: 2, title: 'In Progress'},
@@ -21,7 +22,7 @@ export default function List(props) {
     <ul className='list'>
       <Context.Provider
         value={{
-          dispatchTitle
+          dispatchTitle,
         }}
       >
         {stateTitleList.map(item => (

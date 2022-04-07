@@ -11,7 +11,7 @@ export default function ItemUpLevel(props) {
   const [state, dispatch] = useReducer(Reducer, jTitle, init)
   const [todoTitle, setTodoTitle] = useState('')
   const [TitleList, setTitleList] = useState('')
-
+  
   useEffect(() => {
     localStorage.setItem(props.title, JSON.stringify(state))
   }, [state])
@@ -46,11 +46,6 @@ export default function ItemUpLevel(props) {
           type="text"          
         />
       </div>
-
-      <Context.Provider value={{
-        dispatch
-      }}
-      >
         <div>
           <div className="input-field">
             <input
@@ -64,7 +59,6 @@ export default function ItemUpLevel(props) {
 
           <TodoList author={props.author} todos={state} />
         </div>
-      </Context.Provider>
     </li>
   )
 }
