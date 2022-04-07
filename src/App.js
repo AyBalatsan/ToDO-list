@@ -6,21 +6,25 @@ import Form from 'react-bootstrap/Form'
 import  Button from 'react-bootstrap/Button'
 
 function App() {
-  const[modalActive, setModalActive] = useState(true)
-  const[nameUser, setNameUser] = useState('')
+  const[modalActive, setModalActive] = useState(false)
+  const[nameUser, setNameUser] = useState(null)
 
-  useEffect(() =>{
-    setModalActive(JSON.parse(localStorage.getItem('preview') || []))
-    setNameUser(JSON.parse(localStorage.getItem('author') || []))
+  let jAuthor = JSON.parse(localStorage.getItem('author'))
+  useEffect(()=>{
+    setModalActive(()=>{
+      if (jAuthor == null) {
+        setModalActive(true)  
+        setNameUser(jAuthor)      
+      }
+      else {
+        setNameUser(jAuthor)
+        setModalActive(false)
+      }
+    })
   }, [])
-
-  useEffect(() =>{
-    localStorage.setItem('preview', JSON.stringify(modalActive))
-  }, [modalActive])
-    
   useEffect(() =>{
     localStorage.setItem('author', JSON.stringify(nameUser))
-  }, [nameUser])
+  }, [nameUser])  
 
   return (
     <div className="App">
@@ -32,7 +36,7 @@ function App() {
               type="text"
               id="inputName"
               aria-describedby="passwordHelpBlock"
-              value={nameUser}
+              placeholder='Введите имя автора'
               onChange={event => setNameUser(event.target.value)}
             />
           <Form.Text id="passwordHelpBlock" muted>

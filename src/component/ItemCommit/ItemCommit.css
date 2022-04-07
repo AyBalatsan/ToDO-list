@@ -1,8 +1,16 @@
+ul .blockCommitItem{
+    max-width: none !important;
+}
 .blockCommit {
     margin: 10px 0;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
+    padding: 10px 8px;
+    border: 2px solid rgb(247, 186, 107);
+    border-radius: 8px;
+    width: 100%;
 
 }
 .blockCommit__title{

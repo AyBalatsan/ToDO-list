@@ -9,6 +9,9 @@
 }
 .blockMessage__number{}
 
+.blockCommitList{
+  width: 100%;
+}
 .todo {
     margin-bottom: 1rem;
     display: flex;
@@ -18,13 +21,13 @@
     width: 100%;  
     padding: 1rem;
     border-radius: 15px;
+    cursor: pointer;
   }
   
   .todo label {  
     display: flex;
     align-items: center;
     justify-content: space-between;
-    cursor: pointer;
   }
   
   .todo i {

@@ -3,14 +3,14 @@ import { useState, useEffect, useReducer, useContext } from 'react'
 import TodoList from '../TodoList/TodoList'
 import { Context } from '../../context'
 import Reducer from '../../reducer'
-import Modal from '../modal/modal';
 
 export default function ItemUpLevel(props) {
+  let jTitle = JSON.parse(localStorage.getItem(props.title)) || []
+  const init = jTitle => jTitle
   const { dispatchTitle } = useContext(Context)
-  const [state, dispatch] = useReducer(Reducer, JSON.parse(localStorage.getItem(props.title)) || [])
+  const [state, dispatch] = useReducer(Reducer, jTitle, init)
   const [todoTitle, setTodoTitle] = useState('')
   const [TitleList, setTitleList] = useState('')
-  const [modalTitleList, setModalTitleList] = useState(false)
 
   useEffect(() => {
     localStorage.setItem(props.title, JSON.stringify(state))
@@ -24,7 +24,6 @@ export default function ItemUpLevel(props) {
         identifier: props.id
       })
       setTitleList('')
-      setModalTitleList(false)
     }
   }
 

@@ -1,39 +1,39 @@
-import React, {useState, useContext, useReducer, useEffect} from 'react'
-import { Context } from '../../context'
+import React, {useContext, useEffect, useReducer, useState} from 'react'
+import {Context} from '../../context'
 import Modal from '../modal/modal'
 import ItemCommit from '../ItemCommit/ItemCommit'
 import Reducer from '../../reducer'
 import message from './img/email.png'
-import s from './TodoItem.css'
+import './TodoItem.css'
 
 
 export default function TodoItem({title, id, author}) {
   const {dispatch} = useContext(Context)
-  const[modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = useState(false)
   const [stateCommit, dispatchCommit] = useReducer(Reducer, JSON.parse(localStorage.getItem('Commit' + id)) || [])
   const [todoCommit, setTodoCommit] = useState('')
-    
+
   useEffect(() => {
-      localStorage.setItem('Commit' + id, JSON.stringify(stateCommit))
+    localStorage.setItem('Commit' + id, JSON.stringify(stateCommit))
   }, [stateCommit])
 
   const addTodoCommit = event => {
-      if (event.key === 'Enter' && todoCommit !== '') {
-        dispatchCommit({
-          type: 'addCommit',
-          payload: todoCommit
-        })
-        setTodoCommit('')
-      }
+    if (event.key === 'Enter' && todoCommit !== '') {
+      dispatchCommit({
+        type: 'addCommit',
+        payload: todoCommit
+      })
+      setTodoCommit('')
+    }
   }
-  
-  return (    
-    <li className='todo'>
+
+  return (
+    <li className='todo' onClick={() => setModalOpen(true)}>
       <Context.Provider value={{dispatchCommit}}>
-        <p className='todo__title' onClick={() => setModalOpen(true)}>{title}</p>
-        <div className ="blockMessage">
-          <img  className ="blockMessage__img" src={message} alt='message'></img>
-          <p  className ="blockMessage__number">{stateCommit.length}</p>
+        <p className='todo__title'>{title}</p>
+        <div className="blockMessage">
+          <img className="blockMessage__img" src={message} alt='message'/>
+          <p className="blockMessage__number">{stateCommit.length}</p>
         </div>
         <Modal active={modalOpen} setActive={setModalOpen}>
           <h3>{title}</h3>
@@ -47,8 +47,8 @@ export default function TodoItem({title, id, author}) {
             placeholder='Add comment'
           >
           </input>
-          <ul>
-            {stateCommit.map(item => <ItemCommit key={item.id} {...item} />)}
+          <ul className='blockCommitList'>
+            {stateCommit.map(item => <ItemCommit key={item.id} {...item} dispatchCommit={dispatchCommit}/>)}
           </ul>
           <i
             className="material-icons red-text"
@@ -61,6 +61,6 @@ export default function TodoItem({title, id, author}) {
           </i>
         </Modal>
       </Context.Provider>
-    </li >
+    </li>
   )
 }
