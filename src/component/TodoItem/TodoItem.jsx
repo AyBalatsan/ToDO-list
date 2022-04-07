@@ -7,7 +7,7 @@ import message from './img/email.png'
 import s from './TodoItem.css'
 
 
-export default function TodoItem({title, id, completed, author}) {
+export default function TodoItem({title, id, author}) {
   const {dispatch} = useContext(Context)
   const[modalOpen, setModalOpen] = useState(false)
   const [stateCommit, dispatchCommit] = useReducer(Reducer, JSON.parse(localStorage.getItem('Commit' + id)) || [])

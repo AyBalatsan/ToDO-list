@@ -11,16 +11,13 @@ function App() {
 
   useEffect(() =>{
     setModalActive(JSON.parse(localStorage.getItem('preview') || []))
+    setNameUser(JSON.parse(localStorage.getItem('author') || []))
   }, [])
 
   useEffect(() =>{
     localStorage.setItem('preview', JSON.stringify(modalActive))
   }, [modalActive])
-  
-  useEffect(() =>{
-    setNameUser(JSON.parse(localStorage.getItem('author') || []))
-  }, [])
-
+    
   useEffect(() =>{
     localStorage.setItem('author', JSON.stringify(nameUser))
   }, [nameUser])
